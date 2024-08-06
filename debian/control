@@ -1,15 +1,80 @@
-Source: template-repository
-Section: unknown
+Source: httpx
+Section: python
 Priority: optional
-Maintainer: Tsic404 <liuheng@deepin.org>
-Build-Depends: debhelper (>= 11)
-Standards-Version: 4.1.3
-Homepage: https://github.com/deepin-community/template-repository
-#Vcs-Browser: https://salsa.debian.org/debian/deepin-community-template-repository
-#Vcs-Git: https://salsa.debian.org/debian/deepin-community-template-repository.git
+Maintainer: Sandro Tosi <morph@debian.org>
+Build-Depends: debhelper (>= 13),
+               debhelper-compat (= 13),
+               pybuild-plugin-pyproject,
+               python3-all,
+               python3-anyio,
+               python3-brotli <!nocheck>,
+               python3-certifi,
+               python3-chardet,
+               python3-charset-normalizer <!nocheck>,
+               python3-click (>= 8) <!nocheck>,
+               python3-h11,
+               python3-h2,
+               python3-hatch-fancy-pypi-readme,
+               python3-hatchling,
+               python3-httpcore (>= 1) <!nocheck>,
+               python3-idna,
+               python3-pygments <!nocheck>,
+               python3-pytest <!nocheck>,
+               python3-pytest-asyncio <!nocheck>,
+# Should be enough to pass last skipped test but not available in the archive
+#              python3-pytest-trio <!nocheck>,
+               python3-pytest-cov <!nocheck>,
+               python3-rich (>= 10) <!nocheck>,
+               python3-setuptools,
+               python3-sniffio,
+               python3-trio <!nocheck>,
+               python3-socksio <!nocheck>,
+               python3-trustme <!nocheck>,
+               python3-urllib3,
+               python3-uvicorn <!nocheck>,
+Standards-Version: 4.6.2.0
+Homepage: https://www.python-httpx.org/
+Vcs-Git: https://salsa.debian.org/morph/httpx.git
+Vcs-Browser: https://salsa.debian.org/morph/httpx
 
-Package: template-repository
-Architecture: any
-Depends: ${shlibs:Depends}, ${misc:Depends}
-Description: <insert up to 60 chars description>
- <insert long description, indented with spaces>
+Package: python3-httpx
+Architecture: all
+Depends: python3-click (>= 8),
+         python3-pygments,
+         python3-rich (>= 10),
+         ${misc:Depends},
+         ${python3:Depends},
+Recommends: ${python3:Recommends},
+Suggests: ${python3:Suggests},
+Description: next generation HTTP client
+ HTTPX is a fully featured HTTP client for Python 3, which provides sync and
+ async APIs, and support for both HTTP/1.1 and HTTP/2.
+ .
+ HTTPX is a high performance asynchronous HTTP client, that builds on the
+ well-established usability of requests, and gives you:
+ .
+  * A broadly requests-compatible API.
+  * Standard synchronous interface, but with async support if you need it.
+  * HTTP/1.1 and HTTP/2 support.
+  * Ability to make requests directly to WSGI applications or ASGI applications.
+  * Strict timeouts everywhere.
+  * Fully type annotated.
+  * 99% test coverage.
+ .
+ Plus all the standard features of requests:
+ .
+  * International Domains and URLs
+  * Keep-Alive & Connection Pooling
+  * Sessions with Cookie Persistence
+  * Browser-style SSL Verification
+  * Basic/Digest Authentication
+  * Elegant Key/Value Cookies
+  * Automatic Decompression
+  * Automatic Content Decoding
+  * Unicode Response Bodies
+  * Multipart File Uploads
+  * HTTP(S) Proxy Support
+  * Connection Timeouts
+  * Streaming Downloads
+  * .netrc Support
+  * Chunked Requests

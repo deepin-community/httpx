@@ -1,4 +1,19 @@
-#!/usr/bin/make -f
+#! /usr/bin/make -f
+
+export PYBUILD_NAME=httpx
+export PYBUILD_DISABLE=test
+
+# Use dynamic port for unittest embedded webservers
+# Also see debian/patches/0000-Debianize-unittests-run
+# export HTTPX_TEST_HTTP_PORT=$(shell python3 -c 'import socket; s=socket.socket(); s.bind(("", 0)); print(s.getsockname()[1]); s.close()')
+# export HTTPX_TEST_HTTPS_PORT=$(shell python3 -c 'import socket; s=socket.socket(); s.bind(("", 0)); print(s.getsockname()[1]); s.close()')
 
 %:
-	dh $@
+	dh $@ --with python3 --buildsystem=pybuild
+
+override_dh_auto_test:
+ifeq ($(filter nocheck,$(DEB_BUILD_PROFILES)),)
+	for python in $(shell py3versions --supported); do \
+	  $$python -m pytest -v -Wignore -k 'not test_connect_timeout and not test_sync_proxy_close and not test_async_proxy_close'; \
+	done
+endif

@@ -1,5 +1,146 @@
-template-repository (1.0-1) unstable; urgency=medium
+httpx (0.27.0-1) unstable; urgency=medium
 
-  * Initial release
+  * New upstream release
 
- -- Tsic404 <liuheng@deepin.org>  Sat, 28 Jan 2023 13:46:49 +0800
+ -- Sandro Tosi <morph@debian.org>  Thu, 07 Mar 2024 20:44:52 -0500
+
+httpx (0.26.0-2) unstable; urgency=medium
+
+  * drop DPT
+
+ -- Sandro Tosi <morph@debian.org>  Fri, 01 Mar 2024 16:30:04 -0500
+
+httpx (0.26.0-1) unstable; urgency=medium
+
+  * Team upload.
+  * New upstream release.
+    - Drops dependency on python3-rfc3986 (Closes: #1058669)
+  * Drop patch, hatch-fancy-pypi-readme is now available in Debian.
+  * Build-Depend on python3-anyio.
+  * Bump Build-Depends on python3-httpcore.
+
+ -- Stefano Rivera <stefanor@debian.org>  Mon, 01 Jan 2024 18:54:09 -0400
+
+httpx (0.23.3-1) unstable; urgency=medium
+
+  * New upstream release
+  * debian/copyright
+    - extend packaging copyright years
+  * Refresh/drop patches
+  * debian/control
+    - bump Standards-Version to 4.6.2.0 (no changes needed)
+  * debian/tests/unittests
+    - run autopkgtest on all supported python versions
+
+ -- Sandro Tosi <morph@debian.org>  Sun, 22 Jan 2023 02:36:20 -0500
+
+httpx (0.23.1-1) unstable; urgency=medium
+
+  * New upstream release
+  * debian/control
+    - replace b-d on dh-python with pybuild-plugin-pyproject
+    - add hatchling to b-d, needed by pyproject.toml
+  * debian/patches/disable-hatch-fancy-pypi-readme.patch
+    - dont use hatch-fancy-pypi-readme module, not available in Debian
+  * debian/patches/PR2456.patch
+    - drop multipart test requirement, since PyPI:multipart and
+      PyPI:python-multipart conflicts
+
+ -- Sandro Tosi <morph@debian.org>  Fri, 09 Dec 2022 02:00:45 -0500
+
+httpx (0.23.0-1) unstable; urgency=medium
+
+  * New upstream release; Closes: #1010336 - CVE-2021-41945
+  * debian/control
+    - bump b-d on httpcore to >= 0.15.0
+
+ -- Sandro Tosi <morph@debian.org>  Wed, 22 Jun 2022 22:16:02 -0400
+
+httpx (0.22.0-2) unstable; urgency=medium
+
+  * debian/control, debian/rules
+    - add socksio to b-d, needed by tests which were disable and can now be
+      enabled again
+  * debian/copyright
+    - extend packaging copyright years
+
+ -- Sandro Tosi <morph@debian.org>  Thu, 17 Mar 2022 22:24:35 -0400
+
+httpx (0.22.0-1) unstable; urgency=medium
+
+  * New upstream release
+  * debian/rules, debian/tests/unittests
+    - skip test_socks_proxy, depends on socksio not present in debian yet
+  * debian/control
+    - bump versioned v-d on httpcore to >= 0.14.5
+
+ -- Sandro Tosi <morph@debian.org>  Thu, 24 Feb 2022 23:52:19 -0500
+
+httpx (0.21.1-1) unstable; urgency=medium
+
+  * New upstream release
+  * debian/rules
+    - run tests at build-time
+    - allow to run test_main, now that the right b-d are in place
+  * debian/control
+    - bump Standards-Version to 4.6.0.1 (no changes needed)
+    - bump versioned b-d on httpcore to >= 0.14
+    - add click, pygments, and rich to b-d, needed to run tests
+    - add click, pygments, and rich to Depends, needed to run /usr/bin/httpx
+  * debian/tests/*
+    - add autopkgtests
+  * debian/copyright
+    - extend packaging copyright years
+
+ -- Sandro Tosi <morph@debian.org>  Tue, 30 Nov 2021 00:55:55 -0500
+
+httpx (0.19.0-1) unstable; urgency=medium
+
+  * New upstream release
+  * Use the new Debian Python Team contact name and address.
+  * debian/patches/0000-Debianize-unittests-run
+    - refresh patch onto new upstream code
+  * debian/control
+    - add charset-normalizer to b-d, needed by tests
+  * Keep tests disabled
+
+ -- Sandro Tosi <morph@debian.org>  Wed, 24 Nov 2021 22:32:58 -0500
+
+httpx (0.16.1-1) unstable; urgency=low
+
+  [ Debian Janitor ]
+  * Set upstream metadata fields: Bug-Database, Bug-Submit, Repository,
+    Repository-Browse.
+
+  [ Ondřej Nový ]
+  * d/control: Update Vcs-* fields with new Debian Python Team Salsa
+    layout.
+
+  [ Sandro Tosi ]
+  * New upstream release; Closes: #971702
+  * debian/watch
+    - track github
+  * debian/patches/
+    - remove patches, no longer needed
+  * debian/control
+    - wrap-and-sort
+    - add brotli, httpcore, pytest, pytest-cov, trio, trustme, uvicorn to b-d,
+      needed for tests
+    - set httpcore as a versioned b-d, to be >= 0.12
+  * debian/rules
+    - disable tests (temporarily)
+
+ -- Sandro Tosi <morph@debian.org>  Thu, 29 Oct 2020 01:37:46 -0400
+
+httpx (0.12.1-2) unstable; urgency=medium
+
+  * debian/watch
+    - sort dev releases lower than final ones
+
+ -- Sandro Tosi <morph@debian.org>  Sat, 18 Jul 2020 01:53:45 -0400
+
+httpx (0.12.1-1) unstable; urgency=low
+
+  * Initial release; Closes: #951551
+
+ -- Sandro Tosi <morph@debian.org>  Mon, 11 May 2020 00:35:56 -0400
